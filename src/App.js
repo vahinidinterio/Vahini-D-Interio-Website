@@ -1272,7 +1272,7 @@ export default function App() {
                   WebkitTextFillColor: "transparent",
                   filter: "drop-shadow(0 6px 24px rgba(0,0,0,0.65))",
                   textShadow: `0 4px 22px rgba(193,163,93,0.06)`,
-                  fontFamily: "'Cormorant Garamond', serif",
+                  // fontFamily: "'Cormorant Garamond', serif",
                   textAlign: "center",
                 }}
               >
@@ -1391,34 +1391,52 @@ export default function App() {
             </div>
           </motion.div>
           {/* END OF MODIFIED BLOCK */}
+{/* === NEW GEMINI FEATURE BUTTON (PERFECT ALIGNMENT & SPACING) === */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 2.2, duration: 0.8 }}
+  className="text-center flex justify-center"
+  style={{ marginBottom: "clamp(8px, 2vh, 20px)" }}
+>
+  <motion.button
+    onClick={() => setShowAnalysisModal(true)}
+    whileHover={{
+      scale: 1.06,
+      boxShadow: "0 0 35px rgba(193,163,93,0.35)",
+      background:
+        "linear-gradient(135deg, rgba(193,163,93,0.25), rgba(193,163,93,0.15))",
+    }}
+    whileTap={{ scale: 0.97 }}
+    className="relative flex items-center justify-center px-7 md:px-9 py-7 md:py-4 rounded-full font-semibold transition-all duration-300"
+    style={{
+      background:
+        "linear-gradient(135deg, rgba(193,163,93,0.18), rgba(193,163,93,0.08))",
+      border: `1.5px solid ${V.gold}`,
+      color: V.offGold,
+      letterSpacing: "0.08em",
+      boxShadow: "0 0 20px rgba(193,163,93,0.15)",
+      backdropFilter: "blur(8px)",
+      WebkitBackdropFilter: "blur(8px)",
+      // gap: 'clamp(14px, 1.8vw, 24px)',
+      padding: 'clamp(14px, 2vw, 18px)',
+      borderRadius: 'clamp(14px, 2vw, 18px)', 
+    }}
+  >
+    <Camera
+      className="w-5 h-5 md:w-6 md:h-6 text-[#c1a35d]"
+      style={{
+        filter: "drop-shadow(0 0 4px rgba(193,163,93,0.6))",
+        flexShrink: 0,
+      }}
+    />
+    <span className="whitespace-nowrap tracking-wide text-[clamp(13px,1.2vw,15px)]">
+      Get Instant Design Analysis
+    </span>
+  </motion.button>
+</motion.div>
+{/* ================================================ */}
 
-          {/* === NEW GEMINI FEATURE BUTTON === */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.2, duration: 0.8 }}
-            className="text-center"
-            style={{ marginBottom: "clamp(8px, 2vh, 16px)" }}
-          >
-            <motion.button
-              onClick={() => setShowAnalysisModal(true)}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(193,163,93,0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-4 md:px-6 py-2 md:py-3 flex items-center justify-center mx-auto rounded-full font-bold transition-all"
-              style={{
-                background: V.red,
-                color: V.offGold,
-                border: `2px solid ${V.gold}`,
-                letterSpacing: "0.08em",
-                boxShadow: "0 4px 15px rgba(192,57,43,0.5)",
-                fontSize: "clamp(12px, 1.3vw, 14px)",
-              }}
-            >
-              <Camera className="w-4 h-4 md:w-5 md:h-5 mr-2 " />
-              <span className="whitespace-nowrap p-1">Get Instant Design Analysis</span>
-            </motion.button>
-          </motion.div>
-          {/* ================================= */}
 
 
           {/* Footer small */}
