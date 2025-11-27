@@ -46,7 +46,7 @@ const FloatingSocialButton = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className={`fixed z-40 group cursor-pointer flex items-center gap-3 ${isMobile
-                    ? 'bottom-4 right-4' // Mobile: bottom-right (below Analysis button)
+                    ? 'bottom-28 right-4' // Mobile: bottom-right (below Analysis button)
                     : 'top-52 right-4 md:right-6 lg:right-8' // Desktop: top-right (below Analysis button)
                     }`}
                 style={{

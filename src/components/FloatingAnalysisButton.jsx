@@ -67,7 +67,7 @@ const FloatingAnalysisButton = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className={`fixed z-40 group cursor-pointer ${isMobile
-                    ? 'bottom-20 right-4' // Mobile: bottom-right
+                    ? 'bottom-48 right-4' // Mobile: bottom-right
                     : 'top-28 right-4 md:right-6 lg:right-8' // Desktop: top-right
                     }`}
                 style={{
