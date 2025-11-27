@@ -1,0 +1,15 @@
+/* TEAM */
+  Founder: Chennupalli Koteswara Chari
+  Co-Founder: Kancheti Prasad
+  Site: Vahini D'Interio
+  Location: Narasaraopet, Andhra Pradesh, India
+
+/* SITE */
+  Last update: 2025/11/22
+  Language: English
+  Doctype: HTML5
+  IDE: VS Code
+  Framework: React.js, Tailwind CSS
+
+/* THANKS */
+  To all our clients and partners who trust us with their dream homes.

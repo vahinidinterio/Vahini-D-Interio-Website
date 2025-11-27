@@ -1,25 +1,56 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Default Dark Theme */
+    --bg: #0D0D0D;
+    --near-black: #0A0A0A;
+    --dark-accent: #1A1A1A;
+    --text-main: #E8D2A5;
+    /* offGold */
+    --text-secondary: rgba(232, 210, 165, 0.7);
+    --gold: #C1A35D;
+    --gold2: #D4B76B;
+    --red: #C0392B;
+    --card-bg: rgba(26, 26, 26, 0.4);
+    --card-border: rgba(255, 255, 255, 0.05);
+  }
+
+  .light-theme {
+    /* Muted Contrast Light Theme (No Stark White) */
+    --bg: #EBE4D6;
+    /* Very Light Warm Beige/Parchment - Primary Background */
+    --near-black: #1a1a1a;
+    /* Dark color for text on light backgrounds */
+    --dark-accent: #D4C9B5;
+    /* Soft Beige Gray - Dividers/Borders */
+    --text-main: #4A4339;
+    /* Deep Warm Brown/Charcoal - Primary Text */
+    --text-secondary: #7F7366;
+    /* Muted Brown-Gray - Secondary Text */
+    --gold: #C1A35D;
+    /* Original Vahini Gold - Accent Color */
+    --gold2: #D4B76B;
+    --red: #A93226;
+    --card-bg: #F9F7F3;
+    /* Soft Light Cream Card Background */
+    --card-border: rgba(193, 163, 93, 0.3);
+    /* Slightly stronger light gold border */
+  }
+
   html {
     scroll-behavior: smooth;
-    overflow: hidden;
-    height: 100%;
+    scrollbar-width: none;
+    background-color: var(--bg);
+    color: var(--text-main);
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
-  
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    overflow: hidden;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .text-primary-text {
-    @apply text-red-600;
+
+  /* Firefox */
+  html {
+    -ms-overflow-style: none;
   }
 }
 
@@ -27,32 +58,57 @@
   .btn-primary {
     @apply bg-gradient-to-r from-amber-400 to-red-500 hover:from-amber-500 hover:to-red-600 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2;
   }
-  
+
   .btn-secondary {
     @apply bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-3 px-6 rounded-lg border-2 border-red-400 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2;
   }
-  
+
   .btn-outline {
     @apply bg-transparent hover:bg-gradient-to-r from-amber-400 to-red-500 hover:text-white font-semibold py-3 px-6 rounded-lg border-[1px] border-amber-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2;
   }
-  
+
   .card {
     @apply rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2;
   }
-  
+
   .section-padding {
     @apply py-16 md:py-24;
   }
-  
+
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-red-600 to-red-300 bg-clip-text text-transparent;
   }
-  
+
   .gradient-bg {
     @apply bg-gradient-to-r from-red-600 to-red-100;
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* View Transition API - Spotlight Reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+  filter: drop-shadow(0 0 30px rgba(193, 163, 93, 0.6));
 }
