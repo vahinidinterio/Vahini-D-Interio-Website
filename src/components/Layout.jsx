@@ -2,19 +2,30 @@ import React, { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Instagram, Facebook, Youtube, MapPin, Phone, Mail, Globe, Linkedin } from "lucide-react";
-import LuxuryGlints from "./LuxuryGlints";
-import LocalSeoLinks from "./LocalSeoLinks";
-import CustomScrollIndicator from "./CustomScrollIndicator";
-import InteractiveBackground from "./InteractiveBackground";
 import FloatingAnalysisButton from "./FloatingAnalysisButton";
 import FloatingSocialButton from "./FloatingSocialButton";
+import LocalSeoLinks from "./LocalSeoLinks";
+import CustomScrollIndicator from "./CustomScrollIndicator";
 import { V } from "../utils/colors";
 import { useTheme } from "../context/ThemeContext";
+
+// Lazy load heavy background components
+const LuxuryGlints = React.lazy(() => import("./LuxuryGlints"));
+const InteractiveBackground = React.lazy(() => import("./InteractiveBackground"));
 
 const Layout = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
     const { isDark, toggleTheme } = useTheme();
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    // Only load heavy 3D background on desktop
+    React.useEffect(() => {
+        const checkDesktop = () => setIsDesktop(window.innerWidth > 768);
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
 
     const navLinks = [
         { path: "/", label: "Home" },
@@ -55,8 +66,10 @@ const Layout = () => {
             }}
         >
             {/* Global Background Effects */}
-            {isDark && <LuxuryGlints />}
-            <InteractiveBackground />
+            <React.Suspense fallback={null}>
+                {isDark && <LuxuryGlints />}
+                {isDesktop && <InteractiveBackground />}
+            </React.Suspense>
             <CustomScrollIndicator />
 
             {/* Floating Buttons */}
@@ -70,7 +83,7 @@ const Layout = () => {
                     borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'
                 }}>
                 <Link to="/" className="flex items-center gap-3 group" style={{ color: V.gold }}>
-                    <img src="/logo512.png" alt="Vahini Logo" className="h-12 md:h-14 lg:h-16 w-auto rounded-full transition-transform duration-300 group-hover:scale-105" />
+                    <img src="/logo512.png" alt="Vahini D'Interio - Best Interior Design Narasaraopet" width="64" height="64" className="h-12 md:h-14 lg:h-16 w-auto rounded-full transition-transform duration-300 group-hover:scale-105" />
                     <div className="hidden md:flex flex-col">
                         <span className="text-2xl font-light tracking-widest uppercase leading-none">VΛHINI D'INTERIO</span>
                         <span className="text-[0.65rem] tracking-[0.3em] uppercase opacity-80 mt-1 font-medium">Built for Living</span>
@@ -106,7 +119,7 @@ const Layout = () => {
                         onClick={(e) => toggleTheme(e)}
                         className="p-2 rounded-full transition-all duration-300 hover:bg-white/10"
                         style={{ color: V.gold }}
-                        aria-label="Toggle Theme"
+                        aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
                     >
                         {isDark ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
@@ -118,6 +131,7 @@ const Layout = () => {
                         onClick={(e) => toggleTheme(e)}
                         className="p-2 rounded-full transition-all duration-300"
                         style={{ color: V.gold }}
+                        aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
                     >
                         {isDark ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
@@ -125,6 +139,8 @@ const Layout = () => {
                         className="text-current hover:opacity-80"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         style={{ color: V.offGold }}
+                        aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+                        aria-expanded={isMenuOpen}
                     >
                         {isMenuOpen ? <X /> : <Menu />}
                     </button>
@@ -206,7 +222,7 @@ const Layout = () => {
                     {/* Brand Column */}
                     <div className="space-y-6">
                         <Link to="/" className="flex items-center gap-3 group" style={{ color: V.gold }}>
-                            <img src="/logo192.png" alt="Vahini Logo" className="h-10 w-auto" />
+                            <img src="/logo192.png" alt="Vahini D'Interio Logo" width="40" height="40" className="h-10 w-auto" />
                             <div className="flex flex-col">
                                 <span className="text-xl font-light tracking-widest uppercase leading-none">VΛHINI D'INTERIO</span>
                                 <span className="text-[0.55rem] tracking-[0.3em] uppercase opacity-80 mt-1 font-medium">Built for Living</span>
@@ -217,17 +233,18 @@ const Layout = () => {
                         </p>
                         <div className="flex items-center gap-4">
                             {[
-                                { icon: <Facebook size={20} />, href: "https://www.facebook.com/profile.php?id=61583376973962" },
-                                { icon: <Instagram size={20} />, href: "https://www.instagram.com/vahinidinterio/" },
-                                { icon: <Youtube size={20} />, href: "https://www.youtube.com/@VahiniDInterio" },
-                                { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/vahinidinterio" },
-                                { icon: <Globe size={20} />, href: "https://in.pinterest.com/vahinidinterio/" }
+                                { icon: <Facebook size={20} />, href: "https://www.facebook.com/profile.php?id=61583376973962", label: "Visit Vahini D'Interio on Facebook" },
+                                { icon: <Instagram size={20} />, href: "https://www.instagram.com/vahinidinterio/", label: "Follow Vahini D'Interio on Instagram" },
+                                { icon: <Youtube size={20} />, href: "https://www.youtube.com/@VahiniDInterio", label: "Watch Vahini D'Interio on YouTube" },
+                                { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/vahinidinterio", label: "Connect with Vahini D'Interio on LinkedIn" },
+                                { icon: <Globe size={20} />, href: "https://in.pinterest.com/vahinidinterio/", label: "View Vahini D'Interio on Pinterest" }
                             ].map((social, index) => (
                                 <a
                                     key={index}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    aria-label={social.label}
                                     className="p-2 rounded-full border transition-all duration-300 hover:scale-110"
                                     style={{
                                         borderColor: V.gold,

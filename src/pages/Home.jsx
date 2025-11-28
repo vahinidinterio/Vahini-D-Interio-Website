@@ -8,6 +8,7 @@ import VahiniAIButton from "../components/VahiniAIButton";
 import FreeConsultationModal from "../components/FreeConsultationModal";
 import { useTheme } from "../context/ThemeContext";
 import SEO from "../components/SEO";
+import LightRays from "../components/LightRays";
 
 // Swiper for Testimonials
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -44,6 +45,9 @@ const Home = () => {
     const contentMoveY = useTransform(mouseYSpring, [-0.5, 0.5], ["-30px", "30px"]);
 
     useEffect(() => {
+        // Performance: Only add listener on desktop
+        if (window.innerWidth < 768) return;
+
         const handleMouseMove = (e) => {
             const rect = containerRef.current?.getBoundingClientRect();
             if (!rect) return;
@@ -210,7 +214,6 @@ const Home = () => {
                 schema={homeSchema}
             />
 
-            {/* Subtle rotating ring (Background Element) */}
             <motion.div
                 aria-hidden
                 style={{
@@ -232,6 +235,25 @@ const Home = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 300, ease: "linear", repeat: Infinity }}
             />
+
+            {/* Light Rays Background - Top of Homepage Only */}
+            <div className="absolute top-0 left-0 right-0 z-0 pointer-events-none" style={{ height: '100vh' }}>
+                <LightRays
+                    raysOrigin="top-center"
+                    raysColor={isDark ? "#FFFFFF" : "#555555"}
+                    raysSpeed={0.5}
+                    lightSpread={0.8}
+                    rayLength={1.8}
+                    pulsating={true}
+                    fadeDistance={1.2}
+                    saturation={1.0}
+                    followMouse={true}
+                    mouseInfluence={0.5}
+                    noiseAmount={0.04}
+                    distortion={0.1}
+                    className="w-full h-full opacity-80"
+                />
+            </div>
 
             {/* HERO SECTION */}
             <section className="min-h-[90vh] flex items-center justify-center relative z-10 px-4">
@@ -312,13 +334,13 @@ const Home = () => {
                                 className="mt-2"
                                 style={{
                                     fontSize: "clamp(9px, 1vw, 11px)",
-                                    letterSpacing: "0.4em",
+                                    letterSpacing: "0.3em",
                                     textTransform: "uppercase",
                                     color: V.offGold,
-                                    opacity: 0.7
+                                    opacity: 0.8
                                 }}
                             >
-                                Built for Living
+                                Hand-Built by Master Carpenters • Designed for Modern Living
                             </p>
                         </motion.div>
                     </motion.div>
@@ -328,21 +350,23 @@ const Home = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.4, duration: 1 }}
-                        className="text-2xl md:text-4xl font-light mt-6 mb-4"
+                        className="text-2xl md:text-4xl font-normal mt-6 mb-4"
                         style={{ color: isDark ? "#fff" : V.nearBlack, fontFamily: "'Cormorant Garamond', serif" }}
                     >
-                        The Heritage of Woodworking. <br /> The Future of Design.
+                        <strong>Custom Furniture & Luxury Interiors</strong> <br className="hidden md:block" />Crafted in Narasaraopet.
                     </motion.h3>
 
                     {/* Body Text */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 0.8, y: 0 }}
+                        animate={{ opacity: 0.85, y: 0 }}
                         transition={{ delay: 1.8, duration: 1 }}
-                        className="text-sm md:text-base leading-relaxed max-w-2xl mx-auto"
+                        className="text-sm md:text-base leading-relaxed max-w-3xl mx-auto"
                         style={{ color: isDark ? V.offGold : V.nearBlack }}
                     >
-                        For generations, the art of fine carpentry has been our legacy. Vahini D'Interio brings the precision of Vishwabrahmin wood artistry to the modern spaces of Narasaraopet and the Palnadu region. We specialize in custom, bespoke furniture and comprehensive interior solutions, blending traditional mastery with contemporary aesthetics.
+                        For over <strong>three generations</strong>, our family has perfected the art of fine woodworking. At Vahini D'Interio, we combine traditional <strong>Vishwakarma craftsmanship</strong> with contemporary interior design to create <strong>premium custom furniture, modular kitchens, wardrobes,</strong> and <strong>full-home interiors</strong> across <strong>Narasaraopet and the Palnadu region.</strong>
+                        <br /><br />
+                        Every project is <strong>built in-house</strong>, ensuring durability, precision, and timeless aesthetics.
                     </motion.p>
 
                     {/* Analysis Button */}
@@ -376,7 +400,7 @@ const Home = () => {
                                 }}
                             />
                             <span className="whitespace-nowrap tracking-wide text-[clamp(13px,1.2vw,15px)]">
-                                Get Instant Design Analysis
+                                Get Your Free Interior Design Analysis
                             </span>
                         </Link>
                     </motion.div>
@@ -485,7 +509,9 @@ const Home = () => {
                             <div className="relative w-full overflow-hidden">
                                 <img
                                     src={img.url}
-                                    alt={img.name}
+                                    alt={`${img.name} - Interior Design Narasaraopet`}
+                                    width="400"
+                                    height="300"
                                     className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
                                     loading="lazy"
                                 />
@@ -493,7 +519,7 @@ const Home = () => {
 
                                 {/* Watermark */}
                                 <div className="absolute top-4 left-4 opacity-80 pointer-events-none z-10">
-                                    <img src="/social-share-image.jpg" alt="Vahini" className="w-8 h-8 rounded-full drop-shadow-md border border-white/20" />
+                                    <img src="/social-share-image.jpg" alt="Vahini D'Interio Watermark" className="w-8 h-8 rounded-full drop-shadow-md border border-white/20" />
                                 </div>
 
                                 {/* Content Overlay */}
@@ -577,7 +603,9 @@ const Home = () => {
                                     <div className="flex items-center gap-4 mb-6">
                                         <img
                                             src={review.profile_photo_url}
-                                            alt={review.author_name}
+                                            alt={`${review.author_name} - Vahini Client Review`}
+                                            width="48"
+                                            height="48"
                                             className="w-12 h-12 rounded-full border border-[#C1A35D]/30 object-cover"
                                         />
                                         <div>

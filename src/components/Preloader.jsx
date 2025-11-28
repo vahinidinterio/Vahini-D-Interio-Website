@@ -14,20 +14,30 @@ const Preloader = ({ onComplete }) => {
     }, []);
 
     useEffect(() => {
-        // Phase 1: Intro (0-3.5s)
-        const flightTimer = setTimeout(() => {
-            setPhase('flying');
-        }, 3500);
-
-        // Phase 2: Flight (3.5s-4.5s) -> Complete
-        const completeTimer = setTimeout(() => {
+        // Safety timeout: Ensure preloader dismisses even if load event fails
+        const safetyTimer = setTimeout(() => {
             setPhase('complete');
             onComplete();
-        }, 4500);
+        }, 1500); // Max wait time 1.5s
+
+        const handleLoad = () => {
+            // Small buffer to ensure smooth transition
+            setTimeout(() => {
+                setPhase('complete');
+                onComplete();
+                clearTimeout(safetyTimer);
+            }, 500);
+        };
+
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
 
         return () => {
-            clearTimeout(flightTimer);
-            clearTimeout(completeTimer);
+            window.removeEventListener('load', handleLoad);
+            clearTimeout(safetyTimer);
         };
     }, [onComplete]);
 

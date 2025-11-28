@@ -22,6 +22,7 @@
     "react-helmet-async": "latest",
     "react-router-dom": "^7.9.6",
     "react-scripts": "5.0.1",
+    "sharp": "^0.34.5",
     "swiper": "^12.0.3",
     "three": "^0.181.2",
     "web-vitals": "^2.1.4"
@@ -30,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "eslintConfig": {
     "extends": [

@@ -1,10 +1,10 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
-import Preloader from "./components/Preloader";
+import Analytics from "./components/Analytics";
 
 import ErrorBoundary from "./components/ErrorBoundary";
 import TestError from "./components/TestError";
@@ -24,17 +24,13 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <HelmetProvider>
       <ThemeProvider>
         <ErrorBoundary>
           <Router>
+            <Analytics />
             <ScrollToTop />
-            {/* Show Preloader initially, then handle subsequent loading states */}
-            {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-
             <Suspense fallback={null}>
               <Routes>
                 <Route path="/" element={<Layout />}>

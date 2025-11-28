@@ -55,7 +55,7 @@ const FloatingAnalysisButton = () => {
     }
 
     return (
-        <Link to="/analysis">
+        <Link to="/analysis" aria-label="Go to AI Design Analysis Page">
             <motion.div
                 initial={{ opacity: 0, x: isMobile ? 100 : 100, y: isMobile ? 100 : -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}

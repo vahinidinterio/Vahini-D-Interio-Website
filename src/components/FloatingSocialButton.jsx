@@ -34,7 +34,7 @@ const FloatingSocialButton = () => {
     }, [isMobile]);
 
     return (
-        <Link to="/connect">
+        <Link to="/connect" aria-label="Connect with Vahini D'Interio on Social Media">
             <motion.div
                 initial={{ opacity: 0, x: 100, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
