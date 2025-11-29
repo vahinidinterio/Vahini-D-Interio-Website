@@ -566,14 +566,23 @@ const Gallery = () => {
     const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
     const FOLDER_ID = process.env.REACT_APP_DRIVE_FOLDER_ID;
 
+    // Helper function to upgrade image URL from w=400 to w=1920 for lightbox
+    const getHighResUrl = (url) => {
+        if (url.includes('unsplash.com') && url.includes('w=400')) {
+            return url.replace('w=400', 'w=1920');
+        }
+        // For Pinterest and other sources, return as-is
+        return url;
+    };
+
     useEffect(() => {
         const fetchImages = async () => {
             // 1. Prepare Fallback Images
             const fallbackImages = galleryData.map((img, index) => ({
                 id: img.id || `fallback-${index}`,
                 name: img.name,
-                url: img.url, 
-                fullUrl: img.url, // Fallback for lightbox
+                url: img.url,  // Low-res for grid (w=400)
+                fullUrl: getHighResUrl(img.url), // High-res for lightbox (w=1920)
                 height: ['h-32 md:h-64', 'h-40 md:h-80', 'h-48 md:h-96', 'h-36 md:h-72'][index % 4],
                 category: getCategory(img.name),
                 type: img.url.toLowerCase().includes('.mp4') ? 'video' : 'image'
@@ -591,7 +600,7 @@ const Gallery = () => {
                 // Requesting minimal fields, relying on the 'alt=media' fix for URLs
                 const query = `'${FOLDER_ID}'+in+parents`;
                 // We must request the thumbnailLink for the grid preview, as 'alt=media' doesn't scale well.
-                const fields = 'files(id,name,mimeType,thumbnailLink)'; 
+                const fields = 'files(id,name,mimeType,thumbnailLink)';
 
                 const imageResponse = await fetch(
                     `https://www.googleapis.com/drive/v3/files?q=${query}+and+(mimeType+contains+'image/')&key=${API_KEY}&fields=${fields}`
@@ -603,9 +612,9 @@ const Gallery = () => {
 
                 const imageData = imageResponse.ok ? await imageResponse.json() : { files: [] };
                 const videoData = videoResponse.ok ? await videoResponse.json() : { files: [] };
-                
+
                 if (!imageResponse.ok || !videoResponse.ok) {
-                     throw new Error(`Google Drive API returned status: ${imageResponse.status}/${videoResponse.status}`);
+                    throw new Error(`Google Drive API returned status: ${imageResponse.status}/${videoResponse.status}`);
                 }
 
                 // 3. Process Google Drive Media
@@ -613,9 +622,9 @@ const Gallery = () => {
                     id: file.id,
                     name: file.name,
                     // Use thumbnailLink for the grid view (small, CORS-friendly)
-                    url: file.thumbnailLink, 
+                    url: file.thumbnailLink,
                     // Use the 'alt=media' endpoint for the full-resolution lightbox view
-                    fullUrl: getDriveMediaUrl(file.id, 'image', API_KEY), 
+                    fullUrl: getDriveMediaUrl(file.id, 'image', API_KEY),
                     height: ['h-32 md:h-64', 'h-40 md:h-80', 'h-48 md:h-96', 'h-36 md:h-72'][index % 4],
                     category: getCategory(file.name),
                     type: 'image'
@@ -625,9 +634,9 @@ const Gallery = () => {
                     id: file.id,
                     name: file.name,
                     // Use thumbnailLink for the video thumbnail in the grid
-                    url: file.thumbnailLink, 
+                    url: file.thumbnailLink,
                     // Use the /preview link for the lightbox iframe
-                    fullUrl: getDriveMediaUrl(file.id, 'video', API_KEY), 
+                    fullUrl: getDriveMediaUrl(file.id, 'video', API_KEY),
                     height: ['h-32 md:h-64', 'h-40 md:h-80', 'h-48 md:h-96', 'h-36 md:h-72'][index % 4],
                     category: getCategory(file.name),
                     type: 'video',
@@ -636,7 +645,7 @@ const Gallery = () => {
 
                 // console.log('📸 Google Drive Images fetched:', driveImages.length);
                 // console.log('🎥 Google Drive Videos fetched:', driveVideos.length);
-                
+
                 // 4. Combine Google Drive content and Fallback Images
                 const allMedia = [...fallbackImages, ...driveImages, ...driveVideos].sort(() => Math.random() - 0.5);
                 setImages(allMedia);
@@ -689,7 +698,7 @@ const Gallery = () => {
     };
 
     // Schema definition (Omitted for brevity, kept untouched)
-    const schema = { /* ... */ }; 
+    const schema = { /* ... */ };
 
     return (
         <div className="min-h-screen pt-24 px-4 md:px-8 lg:px-16 pb-20">
@@ -767,17 +776,17 @@ const Gallery = () => {
                                         {img.type === 'video' && (
                                             <Video size={36} className="text-white/80 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 z-10 drop-shadow-lg" />
                                         )}
-                                        
+
                                         <img
                                             // img.url is the thumbnailLink, which is generally reliable for grid display
-                                            src={img.url} 
+                                            src={img.url}
                                             alt={img.name}
                                             className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${img.type === 'video' ? 'opacity-50' : ''}`}
                                             loading="lazy"
                                             // Handle potential thumbnail failures by replacing with a placeholder
                                             onError={(e) => { e.target.onerror = null; e.target.src = '/image-placeholder.png'; }}
                                         />
-                                        
+
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 " />
 
                                         {/* Watermark Logo */}
@@ -847,7 +856,7 @@ const Gallery = () => {
                             {selectedImage.type === 'video' ? (
                                 <iframe
                                     // Use the reliable /preview link for video embed
-                                    src={selectedImage.fullUrl || selectedImage.url} 
+                                    src={selectedImage.fullUrl || selectedImage.url}
                                     className="w-[90vw] h-[50vh] md:w-[70vw] md:h-[70vh] object-contain shadow-2xl"
                                     frameBorder="0"
                                     allow="autoplay; encrypted-media"
@@ -862,7 +871,7 @@ const Gallery = () => {
                                     className="max-w-full max-h-[90vh] object-contain shadow-2xl"
                                 />
                             )}
-                            
+
                             {/* Lightbox Watermark and Details (Kept unchanged) */}
                             <div className="absolute bottom-6 left-6 opacity-60 pointer-events-none z-20 rounded-full">
                                 <img src="/social-share-image.jpg" alt="Vahini" className="w-12 md:w-16 h-auto drop-shadow-lg rounded-full" />

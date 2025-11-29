@@ -24,11 +24,18 @@ const Home = () => {
     const containerRef = useRef(null);
     const { isDark } = useTheme();
     const [showLightRays, setShowLightRays] = useState(false);
+    const [showModals, setShowModals] = useState(false); // Defer modals for performance
 
     // Defer LightRays loading to improve initial page load
     useEffect(() => {
         const timer = setTimeout(() => setShowLightRays(true), 1500);
         return () => clearTimeout(timer);
+    }, []);
+
+    // Defer modals loading to improve initial page load (40 seconds)
+    useEffect(() => {
+        const modalTimer = setTimeout(() => setShowModals(true), 40000);
+        return () => clearTimeout(modalTimer);
     }, []);
 
     // Performance Optimization: Use MotionValues instead of State for mouse movement
@@ -838,8 +845,13 @@ const Home = () => {
                 </motion.div>
             </section >
 
-            <DesignAnalysisModal show={showAnalysisModal} onClose={() => setShowAnalysisModal(false)} />
-            <FreeConsultationModal />
+            {/* Defer modals to improve initial page load */}
+            {showModals && (
+                <>
+                    <DesignAnalysisModal show={showAnalysisModal} onClose={() => setShowAnalysisModal(false)} />
+                    <FreeConsultationModal />
+                </>
+            )}
         </div >
     );
 };
