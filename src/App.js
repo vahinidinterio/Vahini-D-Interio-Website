@@ -5,6 +5,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 import Analytics from "./components/Analytics";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import ErrorBoundary from "./components/ErrorBoundary";
 import TestError from "./components/TestError";
@@ -30,6 +31,7 @@ function App() {
         <ErrorBoundary>
           <Router>
             <Analytics />
+            <SpeedInsights />
             <ScrollToTop />
             <Suspense fallback={null}>
               <Routes>

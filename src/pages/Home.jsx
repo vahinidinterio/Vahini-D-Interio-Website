@@ -23,6 +23,13 @@ const Home = () => {
     const [showAnalysisModal, setShowAnalysisModal] = useState(false);
     const containerRef = useRef(null);
     const { isDark } = useTheme();
+    const [showLightRays, setShowLightRays] = useState(false);
+
+    // Defer LightRays loading to improve initial page load
+    useEffect(() => {
+        const timer = setTimeout(() => setShowLightRays(true), 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     // Performance Optimization: Use MotionValues instead of State for mouse movement
     // This prevents re-rendering the entire component on every mouse move
@@ -237,23 +244,25 @@ const Home = () => {
             />
 
             {/* Light Rays Background - Top of Homepage Only */}
-            <div className="absolute top-0 left-0 right-0 z-0 pointer-events-none" style={{ height: '100vh' }}>
-                <LightRays
-                    raysOrigin="top-center"
-                    raysColor={isDark ? "#FFFFFF" : "#555555"}
-                    raysSpeed={0.5}
-                    lightSpread={0.8}
-                    rayLength={1.8}
-                    pulsating={true}
-                    fadeDistance={1.2}
-                    saturation={1.0}
-                    followMouse={true}
-                    mouseInfluence={0.5}
-                    noiseAmount={0.04}
-                    distortion={0.1}
-                    className="w-full h-full opacity-80"
-                />
-            </div>
+            {showLightRays && (
+                <div className="absolute top-0 left-0 right-0 z-0 pointer-events-none" style={{ height: '100vh' }}>
+                    <LightRays
+                        raysOrigin="top-center"
+                        raysColor={isDark ? "#FFFFFF" : "#555555"}
+                        raysSpeed={0.5}
+                        lightSpread={0.8}
+                        rayLength={1.8}
+                        pulsating={true}
+                        fadeDistance={1.2}
+                        saturation={1.0}
+                        followMouse={true}
+                        mouseInfluence={0.5}
+                        noiseAmount={0.04}
+                        distortion={0.1}
+                        className="w-full h-full opacity-80"
+                    />
+                </div>
+            )}
 
             {/* HERO SECTION */}
             <section className="min-h-[90vh] flex items-center justify-center relative z-10 px-4">
@@ -271,7 +280,7 @@ const Home = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.985 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         className="w-full flex flex-col items-center text-center"
                     >
                         <div className="relative inline-block mb-2 text-center">
@@ -349,7 +358,7 @@ const Home = () => {
                     <motion.h3
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.4, duration: 1 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
                         className="text-2xl md:text-4xl font-normal mt-6 mb-4"
                         style={{ color: isDark ? "#fff" : V.nearBlack, fontFamily: "'Cormorant Garamond', serif" }}
                     >
@@ -360,7 +369,7 @@ const Home = () => {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 0.85, y: 0 }}
-                        transition={{ delay: 1.8, duration: 1 }}
+                        transition={{ delay: 0.6, duration: 0.6 }}
                         className="text-sm md:text-base leading-relaxed max-w-3xl mx-auto"
                         style={{ color: isDark ? V.offGold : V.nearBlack }}
                     >
@@ -373,7 +382,7 @@ const Home = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2.2, duration: 0.8 }}
+                        transition={{ delay: 0.8, duration: 0.5 }}
                         className="text-center flex justify-center mt-8"
                     >
                         <Link
