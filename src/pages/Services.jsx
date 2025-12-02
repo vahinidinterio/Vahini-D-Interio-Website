@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Utensils, DoorOpen, Armchair } from 'lucide-react';
+import { Utensils, DoorOpen, Armchair, ArrowRight, MessageCircle, Eye, Users } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { V } from '../utils/colors';
 import SEO from '../components/SEO';
@@ -301,7 +302,7 @@ const Services = () => {
                     </h1>
                     <div className="h-1 w-32 mx-auto mb-6 bg-gradient-to-r from-transparent via-current to-transparent" style={{ color: V.gold }} />
                     <p className="text-lg md:text-xl max-w-4xl mx-auto opacity-90 leading-relaxed" style={{ color: isDark ? V.offGold : V.nearBlack }}>
-                        Our services are defined by the hand of the Master Craftsman. We specialize in bespoke interior carpentry where legacy, material purity, and structural integrity are non-negotiable.
+                        Our services are defined by the hand of the Master Craftsman. We specialize in <Link to="/about" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>bespoke interior carpentry</strong></Link> where legacy, material purity, and structural integrity are non-negotiable. View our <Link to="/portfolio" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>completed projects</strong></Link> or <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>follow us on Instagram</strong></a> to see our latest installations.
                     </p>
                 </motion.header>
 
@@ -429,6 +430,74 @@ const Services = () => {
                         ))}
                     </div>
                 </section>
+
+                {/* --- CTA SECTION: START YOUR PROJECT --- */}
+                <motion.section
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+                    }}
+                    className="mb-24 p-8 md:p-16 rounded-3xl relative overflow-hidden"
+                    style={{
+                        background: `linear-gradient(135deg, ${V.gold}08, ${V.gold}03)`,
+                        border: `1px solid ${V.gold}30`
+                    }}
+                >
+                    <div className="text-center relative z-10">
+                        <h2 className="text-3xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", color: V.gold }}>
+                            Start Your Project Today
+                        </h2>
+                        <p className="text-lg mb-10 max-w-2xl mx-auto opacity-90" style={{ color: isDark ? V.offGold : V.nearBlack }}>
+                            Transform your space with the expertise of our Vishwabrahmin master craftsmen. From concept to completion, we're here to bring your vision to life with unparalleled quality and craftsmanship.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                            <Link
+                                to="/contact"
+                                className="group flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-xl"
+                                style={{
+                                    background: `linear-gradient(135deg, ${V.gold}, ${V.gold2})`,
+                                    color: '#000'
+                                }}
+                            >
+                                <MessageCircle size={22} />
+                                <span>Schedule Consultation</span>
+                                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <Link
+                                to="/portfolio"
+                                className="group flex items-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg transition-all hover:scale-105 active:scale-95"
+                                style={{
+                                    border: `2px solid ${V.gold}`,
+                                    color: V.gold,
+                                    backgroundColor: 'transparent'
+                                }}
+                            >
+                                <Eye size={22} />
+                                <span>View Our Portfolio</span>
+                                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <Link
+                                to="/about"
+                                className="group flex items-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg transition-all hover:scale-105 active:scale-95"
+                                style={{
+                                    border: `2px solid ${V.gold}`,
+                                    color: V.gold,
+                                    backgroundColor: 'transparent'
+                                }}
+                            >
+                                <Users size={22} />
+                                <span>Meet Our Craftsmen</span>
+                                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                        <p className="text-sm opacity-70" style={{ color: isDark ? V.offGold : V.nearBlack }}>
+                            See our latest <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>kitchen installations on Instagram</strong></a> and <a href="https://in.pinterest.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>design inspiration on Pinterest</strong></a>.
+                        </p>
+                    </div>
+                </motion.section>
 
             </div>
         </div>

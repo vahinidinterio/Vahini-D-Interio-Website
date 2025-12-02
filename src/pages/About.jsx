@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, ArrowRight, Eye, Wrench, MessageCircle } from "lucide-react";
 import { V } from "../utils/colors";
 import SEO from "../components/SEO";
 
@@ -199,10 +200,10 @@ const About = () => {
 
                     <div className="prose prose-lg mx-auto max-w-3xl text-justify md:text-center leading-relaxed space-y-6" style={{ color: V.offGold }}>
                         <p>
-                            <strong style={{ color: V.gold }}>Vahini D'Interio</strong> is not merely an interior design studio; it is the continuation of a <strong style={{ color: V.gold }}>SACRED TRADITION</strong>. We are led by a partnership that spans generations, rooted in the Vishwabrahmin Heritage of <strong style={{ color: V.gold }}>MASTER CRAFTSMEN</strong> from the historic artisan village of <strong style={{ color: V.gold }}>Ravipadu</strong>. For centuries, our community has been the custodian of five profound arts—Metalwork, Masonry, Jewelry, Sculpture, and, most importantly for us, Woodworking (Carpentry).
+                            <strong style={{ color: V.gold }}>Vahini D'Interio</strong> is not merely an interior design studio; it is the continuation of a <strong style={{ color: V.gold }}>SACRED TRADITION</strong>. We are led by a partnership that spans generations, rooted in the Vishwabrahmin Heritage of <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>MASTER CRAFTSMEN</strong></Link> from the historic artisan village of <strong style={{ color: V.gold }}>Ravipadu</strong>. For centuries, our community has been the custodian of five profound arts—Metalwork, Masonry, Jewelry, Sculpture, and, most importantly for us, Woodworking (Carpentry). <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Follow our journey on Instagram</strong></a> to see our heritage in action.
                         </p>
                         <p>
-                            Our philosophy is built on the belief that true luxury lies in <strong style={{ color: V.gold }}>TIMELESSNESS</strong>. We honor the deep, <strong style={{ color: V.gold }}>SPIRITUAL KNOWLEDGE</strong> embedded in the selection of materials and the mastery of the hand tool, ensuring every piece of furniture and every interior installation carries the <strong style={{ color: V.gold }}>SOUL</strong> of our <strong style={{ color: V.gold }}>LINEAGE</strong>, perfected for the Modern Home.
+                            Our philosophy is built on the belief that true luxury lies in <strong style={{ color: V.gold }}>TIMELESSNESS</strong>. We honor the deep, <strong style={{ color: V.gold }}>SPIRITUAL KNOWLEDGE</strong> embedded in the selection of materials and the mastery of the hand tool, ensuring every <Link to="/portfolio" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>piece of furniture</strong></Link> and every <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>interior installation</strong></Link> carries the <strong style={{ color: V.gold }}>SOUL</strong> of our <strong style={{ color: V.gold }}>LINEAGE</strong>, perfected for the Modern Home. <a href="https://www.linkedin.com/company/vahini-d-interio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Connect with us on LinkedIn</strong></a> to learn about our professional approach.
                         </p>
                     </div>
                 </motion.section>
@@ -303,6 +304,72 @@ const About = () => {
                 </section>
 
 
+                {/* --- CTA SECTION: EXPERIENCE THE DIFFERENCE --- */}
+                <motion.section
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeInUp}
+                    className="mb-32 p-8 md:p-16 rounded-3xl relative overflow-hidden"
+                    style={{
+                        background: `linear-gradient(135deg, rgba(193,163,93,0.08) 0%, rgba(193,163,93,0.03) 100%)`,
+                        border: `1px solid ${V.gold}30`
+                    }}
+                >
+                    <div className="text-center relative z-10">
+                        <h2 className="text-3xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", color: V.gold }}>
+                            Ready to Experience the Vahini Difference?
+                        </h2>
+                        <p className="text-lg mb-10 max-w-2xl mx-auto opacity-90" style={{ color: V.offGold }}>
+                            Our master craftsmen are ready to transform your space with unparalleled quality and timeless design. Explore our work and start your interior journey today.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                            <Link
+                                to="/portfolio"
+                                className="group flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg"
+                                style={{
+                                    background: `linear-gradient(135deg, ${V.gold}, ${V.gold2})`,
+                                    color: '#000'
+                                }}
+                            >
+                                <Eye size={20} />
+                                <span>View Our Portfolio</span>
+                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <Link
+                                to="/services"
+                                className="group flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95"
+                                style={{
+                                    background: `linear-gradient(135deg, ${V.gold}20, ${V.gold}10)`,
+                                    border: `2px solid ${V.gold}`,
+                                    color: V.gold
+                                }}
+                            >
+                                <Wrench size={20} />
+                                <span>Explore Our Services</span>
+                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="group flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95"
+                                style={{
+                                    background: `linear-gradient(135deg, ${V.gold}20, ${V.gold}10)`,
+                                    border: `2px solid ${V.gold}`,
+                                    color: V.gold
+                                }}
+                            >
+                                <MessageCircle size={20} />
+                                <span>Schedule Consultation</span>
+                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                        <p className="mt-8 text-sm opacity-70" style={{ color: V.offGold }}>
+                            <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Follow our latest projects on Instagram</strong></a> and <a href="https://www.facebook.com/profile.php?id=61583594444033" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Facebook</strong></a> for daily design inspiration.
+                        </p>
+                    </div>
+                </motion.section>
+
+
                 {/* --- 3. THE VAHINI COLLECTIVE: OUR MASTER CRAFTSMEN --- */}
                 <motion.section
                     initial="hidden"
@@ -380,7 +447,7 @@ const About = () => {
                         The Vahini D'Interio Client Experience: CRAFTING TRUST
                     </h2>
                     <p className="text-lg text-center mb-12 max-w-3xl mx-auto opacity-90" style={{ color: V.offGold }}>
-                        Unlike typical contractors, we treat every project as a <strong style={{ color: V.gold }}>SACRED PARTNERSHIP</strong>. Our commitment extends beyond the final coat of polish; we ensure the client's vision, budget, and peace of mind are always central to our operations.
+                        Unlike typical contractors, we treat every project as a <strong style={{ color: V.gold }}>SACRED PARTNERSHIP</strong>. Our commitment extends beyond the final coat of polish; we ensure the client's vision, budget, and peace of mind are always central to our operations. From <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>bespoke modular kitchens</strong></Link> to <Link to="/portfolio" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>custom furniture</strong></Link>, every piece reflects our dedication to excellence.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -391,7 +458,7 @@ const About = () => {
                             },
                             {
                                 title: "BESPOKE COLLABORATION",
-                                desc: "We don't just build; we collaborate. From the initial hand-sketches to the final 3D RENDERS, you are an integral part of the design evolution, ensuring the finished space reflects your unique taste and lifestyle."
+                                desc: "We don't just build; we collaborate. From the initial hand-sketches to the final 3D renders, you are an integral part of the design evolution, ensuring the finished space reflects your unique taste and lifestyle. View our design process in our gallery to see how we bring visions to life."
                             },
                             {
                                 title: "DEDICATION to PALNADU & NARASARAOPET",
@@ -515,6 +582,54 @@ const About = () => {
                         ))}
                     </div>
                 </section>
+
+
+                {/* --- FINAL CTA SECTION: BEGIN YOUR JOURNEY --- */}
+                <motion.section
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeInUp}
+                    className="text-center py-16"
+                >
+                    <div className="h-1 w-32 mx-auto mb-8" style={{ backgroundColor: V.gold }} />
+                    <h2 className="text-3xl md:text-4xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", color: V.gold }}>
+                        Begin Your Interior Journey with Vahini D'Interio
+                    </h2>
+                    <p className="text-lg mb-10 max-w-2xl mx-auto opacity-90" style={{ color: V.offGold }}>
+                        From concept to completion, our team of master craftsmen is ready to transform your vision into reality. Let's create something timeless together.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                        <Link
+                            to="/contact"
+                            className="group flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-xl"
+                            style={{
+                                background: `linear-gradient(135deg, ${V.gold}, ${V.gold2})`,
+                                color: '#000'
+                            }}
+                        >
+                            <MessageCircle size={22} />
+                            <span>Start Your Project</span>
+                            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                        <Link
+                            to="/portfolio"
+                            className="group flex items-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg transition-all hover:scale-105 active:scale-95"
+                            style={{
+                                border: `2px solid ${V.gold}`,
+                                color: V.gold,
+                                backgroundColor: 'transparent'
+                            }}
+                        >
+                            <Eye size={22} />
+                            <span>See Completed Work</span>
+                            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                    <p className="text-sm opacity-70" style={{ color: V.offGold }}>
+                        Stay inspired with our latest projects on <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Instagram</strong></a>, <a href="https://www.facebook.com/profile.php?id=61583594444033" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Facebook</strong></a>, and <a href="https://in.pinterest.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Pinterest</strong></a>.
+                    </p>
+                </motion.section>
 
             </div>
         </div>

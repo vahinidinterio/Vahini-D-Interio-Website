@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight, MessageCircle, Wrench, Users } from "lucide-react";
 import { V } from "../utils/colors";
 import { useTheme } from "../context/ThemeContext";
 import SEO from "../components/SEO";
@@ -164,7 +166,7 @@ const Portfolio = () => {
                     The Vahini D'Interio Portfolio: Crafted for the Palnadu Region
                 </h1>
                 <p className="max-w-3xl mx-auto text-sm md:text-base leading-relaxed" style={{ color: isDark ? V.offGold : V.nearBlack }}>
-                    Explore a curated selection of our finest works, spanning custom wardrobe solutions, intricate threshold and door frame installations, and bespoke interior fit-outs throughout Narasaraopet and Palnadu.
+                    Explore a curated selection of our finest works, spanning <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>custom wardrobe solutions</strong></Link>, intricate threshold and door frame installations, and <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>bespoke interior fit-outs</strong></Link> throughout Narasaraopet and Palnadu. Learn more about our <Link to="/about" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>master craftsmen heritage</strong></Link>.
                 </p>
             </motion.div>
 
@@ -215,11 +217,79 @@ const Portfolio = () => {
                             Whether it is a bespoke teakwood door frame in a traditional home in <strong style={{ color: V.gold }}>Chilakaluripet</strong>, a modern modular kitchen in <strong style={{ color: V.gold }}>Sattenapalle</strong>, or a complete commercial fit-out in <strong style={{ color: V.gold }}>Vinukonda</strong>, we bring the same level of dedication and precision. Our team of expert carpenters and designers understands the unique architectural needs of the Palnadu region, ensuring that every project we undertake blends seamlessly with the local culture while offering modern luxury and comfort.
                         </p>
                         <p>
-                            We are proud to be the preferred choice for homeowners looking for <strong style={{ color: V.gold }}>authentic woodwork</strong> and <strong style={{ color: V.gold }}>contemporary interior design</strong> in Andhra Pradesh. Explore our work to see how we transform houses into homes with the timeless touch of Ravipadu craftsmanship.
+                            We are proud to be the preferred choice for homeowners looking for <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>authentic woodwork</strong></Link> and <strong style={{ color: V.gold }}>contemporary interior design</strong> in Andhra Pradesh. Explore our work to see how we transform houses into homes with the timeless touch of Ravipadu craftsmanship. <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Follow us on Instagram</strong></a> for behind-the-scenes content.
                         </p>
                     </div>
                 </div>
             </motion.div>
+
+            {/* --- CTA SECTION: READY TO CREATE --- */}
+            <motion.section
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+                }}
+                className="mt-20 p-8 md:p-16 rounded-3xl relative overflow-hidden"
+                style={{
+                    background: `linear-gradient(135deg, ${V.gold}08, ${V.gold}03)`,
+                    border: `1px solid ${V.gold}30`
+                }}
+            >
+                <div className="text-center relative z-10">
+                    <h2 className="text-3xl md:text-5xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", color: V.gold }}>
+                        Ready to Create Your Dream Space?
+                    </h2>
+                    <p className="text-lg mb-10 max-w-2xl mx-auto opacity-90" style={{ color: isDark ? V.offGold : V.nearBlack }}>
+                        Inspired by what you see? Let's bring your vision to life with the same dedication, precision, and timeless quality that defines every project in our portfolio.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                        <Link
+                            to="/contact"
+                            className="group flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-xl"
+                            style={{
+                                background: `linear-gradient(135deg, ${V.gold}, ${V.gold2})`,
+                                color: '#000'
+                            }}
+                        >
+                            <MessageCircle size={22} />
+                            <span>Start Your Project</span>
+                            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                        <Link
+                            to="/services"
+                            className="group flex items-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg transition-all hover:scale-105 active:scale-95"
+                            style={{
+                                border: `2px solid ${V.gold}`,
+                                color: V.gold,
+                                backgroundColor: 'transparent'
+                            }}
+                        >
+                            <Wrench size={22} />
+                            <span>Explore Services</span>
+                            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                        <Link
+                            to="/about"
+                            className="group flex items-center gap-3 px-10 py-5 rounded-xl font-semibold text-lg transition-all hover:scale-105 active:scale-95"
+                            style={{
+                                border: `2px solid ${V.gold}`,
+                                color: V.gold,
+                                backgroundColor: 'transparent'
+                            }}
+                        >
+                            <Users size={22} />
+                            <span>Meet the Team</span>
+                            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </div>
+                    <p className="text-sm opacity-70" style={{ color: isDark ? V.offGold : V.nearBlack }}>
+                        <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>Follow us for daily design inspiration</strong></a> and see our latest completed projects.
+                    </p>
+                </div>
+            </motion.section>
         </div>
     );
 };

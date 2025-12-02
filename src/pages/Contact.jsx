@@ -289,7 +289,7 @@ const Contact = () => {
                         Start Your Design Journey in Palnadu.
                     </h1>
                     <p className="leading-relaxed mb-8" style={{ color: isDark ? V.offGold : V.nearBlack }}>
-                        Ready to collaborate on your custom interiors or furniture needs? Whether you are in Narasaraopet or anywhere in the Palnadu district, connect with us to schedule a consultation. Use our Design Analysis tool or contact us directly for expert advice.
+                        Ready to collaborate on your <Link to="/services" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>custom interiors</strong></Link> or <Link to="/portfolio" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>furniture needs</strong></Link>? Whether you are in Narasaraopet or anywhere in the Palnadu district, connect with us to schedule a consultation. Use our Design Analysis tool or contact us directly for expert advice. You can also <a href="https://www.instagram.com/vahinidinterio/" target="_blank" rel="noopener noreferrer" style={{ color: V.gold, textDecoration: 'none', borderBottom: `1px solid ${V.gold}` }}><strong>message us on Instagram</strong></a> for quick responses.
                     </p>
 
                     <div className="space-y-6 mb-10">
@@ -318,7 +318,7 @@ const Contact = () => {
 
                     <Link
                         to="/analysis"
-                        className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95"
+                        className="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95 mb-6"
                         style={{
                             background: `linear-gradient(135deg, ${V.gold}20, ${V.gold}10)`,
                             border: `1px solid ${V.gold}`,
@@ -328,6 +328,22 @@ const Contact = () => {
                         <Camera size={20} />
                         <span>Use AI Design Analysis Tool</span>
                     </Link>
+                    <div className="flex gap-4 flex-wrap">
+                        <Link
+                            to="/services"
+                            className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+                            style={{ color: isDark ? V.offGold : V.nearBlack }}
+                        >
+                            View our <span style={{ color: V.gold, borderBottom: `1px solid ${V.gold}` }}>services</span>
+                        </Link>
+                        <Link
+                            to="/about"
+                            className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+                            style={{ color: isDark ? V.offGold : V.nearBlack }}
+                        >
+                            Meet our <span style={{ color: V.gold, borderBottom: `1px solid ${V.gold}` }}>craftsmen</span>
+                        </Link>
+                    </div>
                 </motion.div>
 
                 {/* Right Column: Contact Form */}
