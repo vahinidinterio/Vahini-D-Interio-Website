@@ -8,7 +8,6 @@ import Analytics from "./components/Analytics";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import ErrorBoundary from "./components/ErrorBoundary";
-import TestError from "./components/TestError";
 import NotFound from "./pages/NotFound";
 
 // Lazy Load Pages for Performance Optimization
@@ -47,7 +46,6 @@ function App() {
                   <Route path="connect" element={<Connect />} />
                   <Route path="privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="terms-of-service" element={<TermsOfService />} />
-                  <Route path="test-error" element={<TestError />} />
                 </Route>
                 {/* Catch-all route for 404 Not Found */}
                 <Route path="*" element={<NotFound />} />

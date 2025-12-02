@@ -148,10 +148,10 @@ const Connect = () => {
                         "@type": "ListItem",
                         "position": 1,
                         "item": {
-                            "@type": "SocialMediaPosting",
+                            "@type": "ProfilePage",
                             "url": "https://www.facebook.com/profile.php?id=61583376973962",
-                            "headline": "Facebook - Vahini D'Interio",
-                            "publisher": {
+                            "name": "Facebook - Vahini D'Interio",
+                            "about": {
                                 "@id": "https://www.vahinidinterio.com/#organization"
                             }
                         }
@@ -160,10 +160,10 @@ const Connect = () => {
                         "@type": "ListItem",
                         "position": 2,
                         "item": {
-                            "@type": "SocialMediaPosting",
+                            "@type": "ProfilePage",
                             "url": "https://www.instagram.com/vahinidinterio/",
-                            "headline": "Instagram - Visual Journey & Project Showcase",
-                            "publisher": {
+                            "name": "Instagram - Visual Journey & Project Showcase",
+                            "about": {
                                 "@id": "https://www.vahinidinterio.com/#organization"
                             }
                         }
@@ -172,10 +172,10 @@ const Connect = () => {
                         "@type": "ListItem",
                         "position": 3,
                         "item": {
-                            "@type": "VideoObject",
+                            "@type": "ProfilePage",
                             "url": "https://www.youtube.com/@VahiniDInterio",
                             "name": "YouTube - Home Tours & Design Tips",
-                            "publisher": {
+                            "about": {
                                 "@id": "https://www.vahinidinterio.com/#organization"
                             }
                         }
@@ -184,10 +184,10 @@ const Connect = () => {
                         "@type": "ListItem",
                         "position": 4,
                         "item": {
-                            "@type": "SocialMediaPosting",
+                            "@type": "ProfilePage",
                             "url": "https://in.pinterest.com/vahinidinterio/",
-                            "headline": "Pinterest - Design Inspiration Board",
-                            "publisher": {
+                            "name": "Pinterest - Design Inspiration Board",
+                            "about": {
                                 "@id": "https://www.vahinidinterio.com/#organization"
                             }
                         }
@@ -196,10 +196,10 @@ const Connect = () => {
                         "@type": "ListItem",
                         "position": 5,
                         "item": {
-                            "@type": "SocialMediaPosting",
+                            "@type": "ProfilePage",
                             "url": "https://www.linkedin.com/in/vahinidinterio",
-                            "headline": "LinkedIn - Professional Network",
-                            "publisher": {
+                            "name": "LinkedIn - Professional Network",
+                            "about": {
                                 "@id": "https://www.vahinidinterio.com/#organization"
                             }
                         }
