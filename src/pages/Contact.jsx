@@ -228,25 +228,24 @@ const Contact = () => {
         try {
             if (!serviceId) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                console.warn("EmailJS keys not set. Simulating success.");
             } else {
                 // Send Admin Notification
                 const adminEmailPromise = emailjs.send(serviceId, templateId, {
-                    name: formData.name,           // Matches {{name}} in template
-                    email: formData.email,         // Matches {{email}} in template
-                    phone: formData.phone,         // Matches {{phone}} in template
-                    message: formData.message,     // Matches {{message}} in template
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    message: formData.message,
                     type: "General Inquiry"
                 }, publicKey);
 
                 // Send Auto-Reply to User
                 const autoReplyPromise = emailjs.send(serviceId, autoReplyTemplateId, {
                     to_name: formData.name,
-                    name: formData.name,           // Matches {{name}} in template
-                    to_email: formData.email,      // Common variable
-                    reply_to: formData.email,      // Common variable for "Reply To"
-                    user_email: formData.email,    // Common variable
-                    email: formData.email,         // Common variable
+                    name: formData.name,
+                    to_email: formData.email,
+                    reply_to: formData.email,
+                    user_email: formData.email,
+                    email: formData.email,
                     message: "Thank you for contacting Vahini D'Interio. We have received your message and will get back to you shortly.",
                     type: "Auto-Reply"
                 }, publicKey);
@@ -257,7 +256,6 @@ const Contact = () => {
             setIsSubmitted(true);
             setFormData({ name: '', email: '', phone: '', message: '' });
         } catch (err) {
-            console.error("EmailJS Error:", err);
             setError("Something went wrong. Please try again.");
         } finally {
             setIsLoading(false);
@@ -436,7 +434,7 @@ const Contact = () => {
                             </div>
                             <h3 className="text-2xl font-bold mb-4" style={{ color: isDark ? '#fff' : '#000' }}>Message Sent!</h3>
                             <p className="opacity-70 mb-8" style={{ color: isDark ? V.offGold : V.nearBlack }}>
-                                Thanks for reaching out, {formData.name}. We'll get back to you within 24 hours.
+                                Thanks for reaching out. We'll get back to you within 24 hours.
                             </p>
                             <button
                                 onClick={() => setIsSubmitted(false)}
