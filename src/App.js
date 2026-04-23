@@ -4,8 +4,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "./context/ThemeContext";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
-import Analytics from "./components/Analytics";
-import { Analytics } from "@vercel/analytics/react"
+import Analyticss from "./components/Analytics";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import emailjs from '@emailjs/browser';
 
@@ -39,7 +39,7 @@ function App() {
       <ThemeProvider>
         <ErrorBoundary>
           <Router>
-            <Analytics />
+            <Analyticss />
             <SpeedInsights />
             <ScrollToTop />
             <Suspense fallback={null}>
