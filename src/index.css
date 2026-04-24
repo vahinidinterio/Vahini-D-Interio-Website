@@ -18,27 +18,45 @@
     --card-border: rgba(255, 255, 255, 0.05);
   }
 
-  .light-theme {
-    /* Muted Contrast Light Theme (No Stark White) */
-    --bg: #EBE4D6;
-    /* Very Light Warm Beige/Parchment - Primary Background */
-    --near-black: #1a1a1a;
-    /* Dark color for text on light backgrounds */
-    --dark-accent: #D4C9B5;
-    /* Soft Beige Gray - Dividers/Borders */
-    --text-main: #4A4339;
-    /* Deep Warm Brown/Charcoal - Primary Text */
-    --text-secondary: #7F7366;
-    /* Muted Brown-Gray - Secondary Text */
-    --gold: #C1A35D;
-    /* Original Vahini Gold - Accent Color */
-    --gold2: #D4B76B;
-    --red: #A93226;
-    --card-bg: #F9F7F3;
-    /* Soft Light Cream Card Background */
-    --card-border: rgba(193, 163, 93, 0.3);
-    /* Slightly stronger light gold border */
-  }
+ /* DARK (existing feel) */
+.theme-dark {
+    --bg: #0D0D0D;
+    --surface: #111;
+    --text: #EDE6D6;
+    --accent: #C1A35D;
+}
+
+/* WARM IVORY */
+.theme-ivory {
+    --bg: #F5F1E8;
+    --surface: #FFFFFF;
+    --text: #2B2B2B;
+    --accent: #C1A35D;
+}
+
+/* TEAK WOOD */
+.theme-teak {
+    --bg: #2B1E16;
+    --surface: #3A2A20;
+    --text: #EDE0D4;
+    --accent: #D4A373;
+}
+
+/* MARBLE */
+.theme-marble {
+    --bg: #F8F8F8;
+    --surface: #FFFFFF;
+    --text: #333333;
+    --accent: #C1A35D;
+}
+
+/* OLIVE EARTH */
+.theme-olive {
+    --bg: #1F2A24;
+    --surface: #2F3E35;
+    --text: #E6E2D3;
+    --accent: #A3B18A;
+}
 
   html {
     scroll-behavior: smooth;

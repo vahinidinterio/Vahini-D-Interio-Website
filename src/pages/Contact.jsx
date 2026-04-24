@@ -295,7 +295,7 @@ const Contact = () => {
                             <div className="p-3 rounded-full bg-[#C1A35D]/10 text-[#C1A35D]"><Phone size={20} /></div>
                             <div>
                                 <p className="text-xs uppercase tracking-wider opacity-60" style={{ color: isDark ? V.offGold : V.nearBlack }}>Call Us</p>
-                                <p className={isDark ? "text-white" : "text-black"}>+91 9704367692</p>
+                                <p className={isDark ? "text-white" : "text-black"}>+91 7416385148</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 opacity-80">

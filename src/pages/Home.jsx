@@ -423,6 +423,104 @@ const Home = () => {
                 </motion.div>
             </section >
 
+
+
+{/* PROBLEMS → TRUST SECTION (IMPROVED UX) */}
+<section className={`py-24 px-4 md:px-10 lg:px-20 relative z-10 ${isDark ? 'bg-black/20' : 'bg-[#C1A35D]/5'}`}>
+
+    <div className="max-w-6xl mx-auto text-center mb-12">
+        <h2
+            className="text-3xl md:text-5xl font-light mb-6"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: V.gold }}
+        >
+            What Usually Happens During Interiors
+        </h2>
+
+        {/* 👇 Subtle interaction hint */}
+        <p className="text-sm md:text-base opacity-60 max-w-2xl mx-auto">
+            Move over each card to see how we approach it differently
+        </p>
+    </div>
+
+    {/* GRID */}
+    <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+
+        {[
+            {
+                problem: "Calls go unanswered",
+                solution: "We stay reachable and responsive throughout your project."
+            },
+            {
+                problem: "Work slows down midway",
+                solution: "We follow a structured workflow with consistent progress."
+            },
+            {
+                problem: "Deadlines keep shifting",
+                solution: "We commit to timelines and respect your schedule."
+            },
+            {
+                problem: "Finishing feels rushed",
+                solution: "We focus on precision and complete every detail properly."
+            }
+        ].map((item, index) => (
+            <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl border transition-all duration-300 cursor-pointer"
+                style={{
+                    borderColor: "rgba(193,163,93,0.2)",
+                    background: isDark ? "#111" : "#fff"
+                }}
+            >
+
+                {/* HOVER BACKGROUND */}
+                <div className="absolute inset-0 bg-[#C1A35D] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+
+                {/* CONTENT */}
+                <div className="relative z-10 p-6 md:p-8">
+
+                    {/* DEFAULT */}
+                    <div className="group-hover:opacity-0 transition duration-300">
+                        <p className="text-xs uppercase tracking-widest mb-2 opacity-60">
+                            Common Situation
+                        </p>
+                        <h3 className="text-lg md:text-xl font-light">
+                            {item.problem}
+                        </h3>
+                    </div>
+
+                    {/* HOVER */}
+                    <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center opacity-0 group-hover:opacity-100 transition duration-500 text-black">
+                        <p className="text-xs uppercase tracking-widest mb-2">
+                            How We Handle It
+                        </p>
+                        <h3 className="text-lg md:text-xl font-medium">
+                            {item.solution}
+                        </h3>
+                    </div>
+
+                </div>
+
+                {/* 👇 MICRO HOVER INDICATOR */}
+                <div className="absolute bottom-3 right-4 text-xs opacity-40 group-hover:opacity-0 transition">
+                    ↗
+                </div>
+            </div>
+        ))}
+    </div>
+
+    {/* FINAL LINE */}
+    <div className="text-center mt-16">
+        <p className="text-lg md:text-2xl font-light leading-relaxed">
+            Most people adjust to these situations.
+            <br />
+            <span style={{ color: V.gold }}>
+                We design our process so you don’t have to.
+            </span>
+        </p>
+    </div>
+
+</section>
+
             {/* SERVICES SECTION */}
             < section id="services" className={`py-20 px-4 md:px-8 lg:px-16 relative z-10 ${isDark ? 'bg-black/20' : 'bg-[#C1A35D]/5'}`}>
                 <motion.div
@@ -805,7 +903,7 @@ const Home = () => {
                                 }}
                             >
                                 <Phone size={20} />
-                                Call +91 9704367692
+                                Call +91 7416385148
                             </a>
                         </div>
 
